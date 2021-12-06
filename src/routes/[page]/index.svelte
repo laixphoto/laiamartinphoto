@@ -1,6 +1,7 @@
 <script context="module">
   export async function load({ page, fetch }) {
     const album_id = page.query.get("id");
+
     const req = await fetch("/api", {
       method: "POST",
       headers: {
@@ -24,6 +25,7 @@
   import Modal from "$lib/Modal.svelte";
 
   export let data;
+  console.log(data);
   let visible = false;
   let currentPhoto;
 
