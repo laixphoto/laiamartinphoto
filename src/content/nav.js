@@ -17,8 +17,8 @@ export const ui = {
       id: "72157720209143073",
     },
     {
-      slug: "/foto-periodismo",
-      title: "Foto Periodismo",
+      slug: "/fotoperiodismo",
+      title: "Fotoperiodismo",
       id: "72157720221672437",
     },
     {
@@ -33,7 +33,7 @@ export const ui = {
     },
     {
       slug: "/personal",
-      title: "Proyectos personales",
+      title: "Proyectos Personales",
       id: "72157720211372449",
     },
     {

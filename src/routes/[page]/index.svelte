@@ -48,7 +48,6 @@
           class="fill"
           src={getImage(photo, "w")}
           alt={photo.title}
-          title={photo.title}
           on:click={() => openPhoto(photo)}
         />
       </li>
