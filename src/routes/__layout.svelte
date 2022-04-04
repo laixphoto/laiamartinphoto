@@ -11,10 +11,6 @@
   <div class="view fill">
     <slot />
   </div>
-
-  <footer class="row fcenter xfill">
-    <p>{ui.footer}</p>
-  </footer>
 </main>
 
 <style lang="scss">
@@ -24,13 +20,6 @@
   }
 
   .view {
-    height: calc(100% - 90px);
-  }
-
-  footer {
-    height: 25px;
-    background: $pri;
-    color: $white;
-    font-size: 12px;
+    height: calc(100% - 70px);
   }
 </style>

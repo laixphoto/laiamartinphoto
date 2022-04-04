@@ -53,8 +53,8 @@
       {#if route.photo}
         <li>
           <a class="col acenter fill" href={route.slug}>
-            <img class="fill" src={getImage(route.photo, "w")} alt={route.title} />
-            <p class="fill row aend">{route.title}</p>
+            <img class="xfill" src={getImage(route.photo, "w")} alt={route.title} />
+            <p class="row aend">{route.title}</p>
           </a>
         </li>
       {/if}
@@ -64,35 +64,36 @@
 
 <style lang="scss">
   ul {
-    padding: 60px;
+    gap: 20px;
+    padding: 40px;
   }
 
   li {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    aspect-ratio: 4/3;
-    padding: 7px;
+    width: 300px;
+    height: 350px;
+    background: $white;
+    border: 1px solid $border;
+    border-radius: 16px;
+    padding: 10px;
+
+    img {
+      height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 5px 10px -5px rgba($black, 0.3);
+      transition: 200ms;
+    }
 
     p {
-      position: absolute;
-      bottom: 7px;
-      left: 7px;
-      width: calc(100% - 14px);
-      background: linear-gradient(to top, rgba($black, 0.9), rgba($black, 0));
-      color: $white;
-      font-size: 30px;
+      font-size: 24px;
       font-weight: bold;
-      border-radius: 4px;
-      padding: 20px;
-      z-index: 2;
+      margin-top: auto;
     }
-  }
 
-  img {
-    object-fit: cover;
-    border-radius: 4px;
-    box-shadow: 0 5px 10px rgba($black, 0.3);
-    transition: 300ms;
+    &:hover {
+      img {
+        filter: opacity(0.5);
+      }
+    }
   }
 </style>

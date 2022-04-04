@@ -1,6 +1,10 @@
 <script context="module">
+  import { ui } from "$content/nav";
+
   export async function load({ page, fetch }) {
-    const album_id = page.query.get("id");
+    let { id: album_id } = ui.routes.filter((r) => {
+      if (r.slug === `/${page.params.category}`) return r;
+    })[0];
 
     const req = await fetch("/api", {
       method: "POST",
@@ -25,7 +29,6 @@
   import Modal from "$lib/Modal.svelte";
 
   export let data;
-  console.log(data);
   let visible = false;
   let currentPhoto;
 
@@ -44,12 +47,7 @@
   <ul class="row jcenter xfill">
     {#each data.photo as photo}
       <li class="row fcenter">
-        <img
-          class="fill"
-          src={getImage(photo, "w")}
-          alt={photo.title}
-          on:click={() => openPhoto(photo)}
-        />
+        <img class="fill" src={getImage(photo, "w")} alt={photo.title} on:click={() => openPhoto(photo)} />
       </li>
     {/each}
   </ul>
@@ -59,25 +57,30 @@
 
 <style lang="scss">
   ul {
-    padding: 60px;
+    gap: 10px;
+    padding: 40px;
   }
 
   li {
-    width: 100%;
-    max-width: 400px;
-    aspect-ratio: 4/3;
-    padding: 7px;
-  }
+    width: 300px;
+    height: 300px;
+    background: $white;
+    border: 1px solid $border;
+    border-radius: 16px;
+    padding: 10px;
 
-  img {
-    cursor: zoom-in;
-    object-fit: cover;
-    border-radius: 4px;
-    box-shadow: 0 5px 10px rgba($black, 0.3);
-    transition: 300ms;
+    img {
+      height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 5px 10px -5px rgba($black, 0.3);
+      transition: 200ms;
+    }
 
     &:hover {
-      transform: scale(1.1);
+      img {
+        filter: opacity(0.5);
+      }
     }
   }
 </style>

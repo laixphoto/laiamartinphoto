@@ -31,7 +31,7 @@
 
 <style lang="scss">
   nav {
-    height: 65px;
+    height: 70px;
     background: $white;
     border-bottom: 1px solid $border;
     padding: 0 40px;
