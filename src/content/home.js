@@ -1,4 +1,4 @@
 export const ui = {
-  title: "Hola verdu",
-  description: "lorem ipsum dolor sit amet, consectetur adipiscing elit."
-}
+  title: "Laia Martín Fotografías",
+  description: "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+};
