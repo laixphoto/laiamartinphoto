@@ -53,7 +53,11 @@
       {#if route.photo}
         <li>
           <a class="col acenter fill" href={route.slug}>
-            <img class="xfill" src={getImage(route.photo, "w")} alt={route.title} />
+            <img
+              class="xfill"
+              src={getImage(route.photo, "w")}
+              alt={route.title}
+            />
             <p class="row aend">{route.title}</p>
           </a>
         </li>
@@ -66,6 +70,10 @@
   ul {
     gap: 20px;
     padding: 40px;
+
+    @media (max-width: $mobile) {
+      padding: 20px;
+    }
   }
 
   li {

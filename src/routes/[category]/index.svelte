@@ -47,7 +47,12 @@
   <ul class="row jcenter xfill">
     {#each data.photo as photo}
       <li class="row fcenter">
-        <img class="fill" src={getImage(photo, "w")} alt={photo.title} on:click={() => openPhoto(photo)} />
+        <img
+          class="fill"
+          src={getImage(photo, "w")}
+          alt={photo.title}
+          on:click={() => openPhoto(photo)}
+        />
       </li>
     {/each}
   </ul>
@@ -59,6 +64,10 @@
   ul {
     gap: 10px;
     padding: 40px;
+
+    @media (max-width: $mobile) {
+      padding: 20px;
+    }
   }
 
   li {
