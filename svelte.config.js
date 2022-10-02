@@ -21,6 +21,7 @@ const config = {
         alias: {
           $content: resolve("./src/content"),
           $fonts: resolve("./src/fonts"),
+          $src: resolve("./src"),
         },
       },
     },

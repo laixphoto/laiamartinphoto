@@ -17,16 +17,21 @@
       <p class="row acenter yfill">{ui.menu_title}</p>
 
       <ul class="expand-menu col">
-        {#each ui.routes as { slug, title, id }}
-          <li class="xfill" class:active={$page.path === slug}>
-            <a href={slug} class="row nowrap acenter fill">
-              <p>{title}</p>
-            </a>
-          </li>
+        {#each ui.routes as { slug, title, id, section }}
+          {#if !section}
+            <li class="xfill" class:active={$page.path === slug}>
+              <a href={slug} class="row nowrap acenter fill">
+                <p>{title}</p>
+              </a>
+            </li>
+          {/if}
         {/each}
       </ul>
     </li>
 
+    <li class="no-mobile row acenter yfill">
+      <a href="/diseno-grafico" class="row acenter yfill">{ui.section_title}</a>
+    </li>
     <li class="row acenter yfill">
       <a href="/contacto" class="row acenter yfill">Contacto</a>
     </li>

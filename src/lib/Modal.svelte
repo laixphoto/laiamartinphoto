@@ -1,23 +1,30 @@
 <script>
   import { fade } from "svelte/transition";
-  export let visible = false;
-  export let currentPhoto;
+  import { currentPhoto } from "$src/stores";
 
   function getImage({ server, id, secret }, size) {
     const prefix = "https://live.staticflickr.com";
     return `${prefix}/${server}/${id}_${secret}_${size}.jpg`;
   }
+
+  function closePhoto() {
+    $currentPhoto = {};
+  }
+
+  function nextPhoto() {
+    $currentPhoto.currentIndex++;
+  }
 </script>
 
-{#if visible}
-  <div class="outer fill" on:click={() => (visible = false)} transition:fade />
-  <img
-    class="modal row fcenter"
-    src={getImage(currentPhoto, "b")}
-    alt={currentPhoto.title}
-    transition:fade
-  />
-{/if}
+<div class="outer fill" on:click={closePhoto} transition:fade />
+<img
+  class="modal row fcenter"
+  src={getImage($currentPhoto, "b")}
+  alt={$currentPhoto.title}
+  transition:fade
+/>
+
+<!-- <button on:click={nextPhoto}>next</button> -->
 
 <style lang="scss">
   .outer,
@@ -39,5 +46,10 @@
     transform: translate(-50%, -50%);
     max-width: 90%;
     max-height: 80%;
+  }
+
+  button {
+    position: fixed;
+    bottom: 0;
   }
 </style>

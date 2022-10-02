@@ -26,38 +26,46 @@
 </script>
 
 <script>
+  import { currentPhoto } from "$src/stores";
   import Modal from "$lib/Modal.svelte";
 
   export let data;
-  let visible = false;
-  let currentPhoto;
 
   function getImage({ server, id, secret }, size) {
     const prefix = "https://live.staticflickr.com";
     return `${prefix}/${server}/${id}_${secret}_${size}.jpg`;
   }
 
-  function openPhoto(photo) {
-    visible = true;
-    currentPhoto = photo;
+  function openPhoto(i) {
+    let currentIndex = i;
+
+    $currentPhoto = {
+      currentIndex,
+      lenght: data.photo.lenght,
+      ...data.photo[currentIndex],
+    };
   }
+
+  
 </script>
 
 <div class="scroll">
   <ul class="row jcenter xfill">
-    {#each data.photo as photo}
+    {#each data.photo as photo, i}
       <li class="row fcenter">
         <img
           class="fill"
           src={getImage(photo, "w")}
           alt={photo.title}
-          on:click={() => openPhoto(photo)}
+          on:click={() => openPhoto(i)}
         />
       </li>
     {/each}
   </ul>
 
-  <Modal bind:visible {currentPhoto} />
+  {#if $currentPhoto.id}
+    <Modal />
+  {/if}
 </div>
 
 <style lang="scss">

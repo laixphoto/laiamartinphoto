@@ -1,8 +1,14 @@
+<script>
+  function sendForm(e) {
+    console.log(e);
+  }
+</script>
+
 <div class="scroll">
   <div class="content col acenter xfill">
     <h1>Contacto</h1>
 
-    <form class="col xfill">
+    <form class="col xfill" on:submit={() => sendForm(e)}>
       <div class="input-wrapper col xfill">
         <label for="name">Nombre</label>
         <input class="xfill" type="text" id="name" name="name" />

@@ -28,6 +28,8 @@
   export let data;
   const routes = [...pages.routes];
 
+  console.log(routes);
+
   routes.forEach((route) => {
     data.photo.forEach((photo) => {
       if (photo.title === route.title) {
@@ -50,7 +52,7 @@
 <div class="scroll">
   <ul class="row jcenter xfill">
     {#each routes as route}
-      {#if route.photo}
+      {#if route.photo && !route.section}
         <li>
           <a class="col acenter fill" href={route.slug}>
             <img
