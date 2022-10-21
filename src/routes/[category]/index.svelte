@@ -45,8 +45,6 @@
       ...data.photo[currentIndex],
     };
   }
-
-  
 </script>
 
 <div class="scroll">
@@ -69,11 +67,15 @@
 </div>
 
 <style lang="scss">
+  .scroll {
+    padding: 100px 0;
+  }
+
   ul {
     gap: 10px;
     padding: 40px;
 
-    @media (max-width: $mobile) {
+    @media (max-width: 980px) {
       padding: 20px;
     }
   }

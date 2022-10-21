@@ -17,9 +17,13 @@
   :global {
     @import "./src/_reset.scss";
     @import "../node_modules/verdu/verdu.scss";
+    @import ".noe-display.css";
   }
 
-  .view {
-    height: calc(100% - 70px);
+  :root {
+    --color-pri: #e3feff;
+    --color-sec: #0f2426;
+
+    --font-title: "NoeDisplay";
   }
 </style>

@@ -1,14 +1,24 @@
 <script>
   function sendForm(e) {
     console.log(e);
+    const email = "hola@laiamartinphoto.com";
   }
 </script>
 
-<div class="scroll">
-  <div class="content col acenter xfill">
-    <h1>Contacto</h1>
+<div class="content col fcenter fill">
+  <h1>Contacto</h1>
 
-    <form class="col xfill" on:submit={() => sendForm(e)}>
+  <p>
+    Email: <a href="mailto:hola@laiamartinphoto.com">
+      hola@laiamartinphoto.comç
+    </a>
+    <br />
+    Teléfono: <a href="tel:0034661100652">(+34) 661.100.652</a>
+    <br />
+    <a href="https://api.whatsapp.com/send?phone=0034661100652">Whatsapp</a>
+  </p>
+
+  <!-- <form class="col xfill" on:submit={() => sendForm(e)}>
       <div class="input-wrapper col xfill">
         <label for="name">Nombre</label>
         <input class="xfill" type="text" id="name" name="name" />
@@ -30,8 +40,7 @@
       </div>
 
       <button class="pri semi" type="submit">Enviar</button>
-    </form>
-  </div>
+    </form> -->
 </div>
 
 <style lang="scss">
@@ -48,12 +57,28 @@
     margin-bottom: 20px;
   }
 
+  p {
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px;
+  }
+
+  a {
+    text-decoration: underline;
+    transition: 200ms;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   form {
     max-width: 600px;
     background: $white;
     gap: 20px;
     box-shadow: 0 5px 10px -5px rgba($black, 0.3);
     padding: 40px;
+    margin-top: 60px;
 
     @media (max-width: $mobile) {
       padding: 20px;
