@@ -1,21 +1,29 @@
 <script context="module">
+  const API = {
+    key: import.meta.env.VITE_KEY,
+    user: import.meta.env.VITE_USER,
+  };
+
   export async function load({ fetch }) {
-    const album_id = "72157720267167555";
+    const cover_id = "72177720303667443";
+    const sections_id = "72157720267167555";
 
-    const req = await fetch("/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ album_id }),
-    });
+    const coverURL = `https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${API.key}&photoset_id=${cover_id}&user_id=${API.user}&format=json&nojsoncallback=1`;
+    const sectionsURL = `https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${API.key}&photoset_id=${sections_id}&user_id=${API.user}&format=json&nojsoncallback=1`;
 
-    const res = await req.json();
-    const data = res.photoset;
+    const reqCover = await fetch(coverURL);
+    const reqSections = await fetch(sectionsURL);
+
+    const resCover = await reqCover.json();
+    const resSections = await reqSections.json();
+
+    const { photoset: coverData } = resCover;
+    const { photoset: sectionsData } = resSections;
 
     return {
       props: {
-        data,
+        coverData,
+        sectionsData,
       },
     };
   }
@@ -25,13 +33,20 @@
   import { ui } from "$content/home";
   import { ui as pages } from "$content/nav";
   import Mouse from "$lib/icons/Mouse.svelte";
-  import Footer from "$lib/Footer.svelte";
+  import Footer from "$lib/components/Footer.svelte";
 
-  export let data;
+  export let coverData;
+  export let sectionsData;
   const routes = [...pages.routes];
 
+  const coverImage = {
+    id: coverData.photo[0].id,
+    server: coverData.photo[0].server,
+    secret: coverData.photo[0].secret,
+  };
+
   routes.forEach((route) => {
-    data.photo.forEach((photo) => {
+    sectionsData.photo.forEach((photo) => {
       if (photo.title === route.title) {
         route["photo"] = photo;
       }
@@ -42,6 +57,10 @@
     const prefix = "https://live.staticflickr.com";
     return `${prefix}/${server}/${id}_${secret}_${size}.jpg`;
   }
+
+  function toSlug(title) {
+    return title.toLowerCase().replaceAll(" ", "-");
+  }
 </script>
 
 <svelte:head>
@@ -50,23 +69,34 @@
 </svelte:head>
 
 <div class="scroll">
-  <section id="welcome" class="col fcenter fill">
+  <section
+    id="welcome"
+    class="col fcenter fill"
+    style="background-image: url({getImage(
+      {
+        server: coverImage.server,
+        id: coverImage.id,
+        secret: coverImage.secret,
+      },
+      'b'
+    )})"
+  >
     <img src="/logo-white-full.svg" alt="Laia Martín Photography" />
     <Mouse />
   </section>
 
   <section id="sections" class="col xfill">
     <ul class="xfill">
-      {#each routes as route}
-        {#if route.photo && !route.section}
+      {#each sectionsData.photo as { title, server, id, secret }}
+        {#if title !== "Diseño Gráfico"}
           <li>
-            <a class="row fill" href={route.slug}>
+            <a class="row fill" href={toSlug(title)}>
               <img
                 class="fill"
-                src={getImage(route.photo, "w")}
-                alt={route.title}
+                src={getImage({ server, id, secret }, "b")}
+                alt={title}
               />
-              <p class="row fcenter">{route.title}</p>
+              <p class="row fcenter">{title}</p>
             </a>
           </li>
         {/if}
@@ -75,6 +105,7 @@
   </section>
 
   <section id="artistic" class="col fcenter xfill">
+    <div class="gradient" />
     <h2>Fotografía artística</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum voluptas,
@@ -88,8 +119,10 @@
 
 <style lang="scss">
   #welcome {
-    background: url("/bg-welcome.jpg") no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
+    background-attachment: fixed;
 
     img {
       width: 40%;
@@ -117,6 +150,7 @@
 
       li {
         position: relative;
+        border-radius: 10px;
         overflow: hidden;
 
         &:nth-of-type(5n + 1) {
@@ -149,20 +183,25 @@
         p {
           position: absolute;
           inset: 0;
-          background: rgba(#000, 0.5);
-          backdrop-filter: saturate(50%);
           color: #fff;
           text-align: center;
           line-height: 1;
           font-family: var(--font-title);
           font-size: 60px;
           font-weight: bold;
+          text-shadow: 0 0 15px rgba(#000, 0.2);
+          opacity: 0;
           margin-top: auto;
-          transition: 500ms;
           padding: 10px;
+          transition: 500ms;
 
           &:hover {
-            opacity: 0;
+            opacity: 1;
+          }
+
+          @media (hover: none) {
+            opacity: 1;
+            font-size: 40px;
           }
         }
       }
@@ -170,15 +209,22 @@
   }
 
   #artistic {
+    position: relative;
     gap: 20px;
     background: url("/artistica.jpg") no-repeat center;
-    background-attachment: fixed;
     background-size: cover;
-    padding: 200px 40px;
+    background-attachment: fixed;
+    padding: 15% 40px;
     color: #fff;
-    
+
     @media (max-width: 980px) {
       padding: 100px 20px;
+    }
+
+    .gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(closest-side, transparent, #000);
     }
 
     h2 {
@@ -186,6 +232,7 @@
       font-size: 60px;
       line-height: 1;
       text-align: center;
+      z-index: 1;
 
       @media (max-width: 980px) {
         font-size: 40px;
@@ -195,6 +242,7 @@
     p {
       max-width: 900px;
       text-align: center;
+      z-index: 1;
     }
   }
 </style>

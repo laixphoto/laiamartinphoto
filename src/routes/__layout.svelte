@@ -1,6 +1,5 @@
 <script>
-  import { ui } from "$content/layout.js";
-  import Nav from "$lib/Nav.svelte";
+  import Nav from "$lib/components/Nav.svelte";
   import "$fonts/circular.css";
   import "$fonts/operator.css";
 </script>

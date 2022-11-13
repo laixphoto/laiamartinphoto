@@ -1,8 +1,7 @@
 const API = {
-  key: "2562f30c269835c6fdd965d0a9ecf7e6",
-  user: "194529610@N05",
+  key: import.meta.env.VITE_KEY,
+  user: import.meta.env.VITE_USER,
 };
-
 
 export async function post({ body }) {
   const { album_id } = await body;

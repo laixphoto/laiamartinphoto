@@ -27,7 +27,7 @@
 
 <script>
   import { currentPhoto } from "$src/stores";
-  import Modal from "$lib/Modal.svelte";
+  import Modal from "$lib/components/Modal.svelte";
 
   export let data;
 

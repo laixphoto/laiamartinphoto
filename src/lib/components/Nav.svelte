@@ -1,7 +1,5 @@
 <script>
   import { ui } from "$content/nav";
-  import { page } from "$app/stores";
-  import { slide } from "svelte/transition";
 
   let showMenu = false;
 
@@ -21,10 +19,15 @@
 
   <ul class="col jcenter aend" class:open-menu={showMenu}>
     <li class="row acenter">
-      <a href="/" class="row acenter" on:click={togMenu}>Inicio</a>
+      <a href="/" class="row acenter" on:click={togMenu}>
+        <p>Inicio</p>
+      </a>
     </li>
 
-    {#each ui.routes as { slug, title }}
+    {#each ui.routes as { slug, title }, i}
+      {#if i === 0 || i === 6}
+        <span class="row" />
+      {/if}
       <li class="row acenter">
         <a href={slug} class="row nowrap acenter fill" on:click={togMenu}>
           <p>{title}</p>
@@ -33,7 +36,9 @@
     {/each}
 
     <li class="row acenter">
-      <a href="/contacto" class="row acenter" on:click={togMenu}>Contacto</a>
+      <a href="/contacto" class="row acenter" on:click={togMenu}>
+        <p>Contacto</p>
+      </a>
     </li>
   </ul>
 </nav>
@@ -112,6 +117,14 @@
         &:hover {
           transform: scale(1.1);
         }
+      }
+
+      span {
+        width: 60%;
+        height: 1px;
+        background: #fff;
+        margin: 20px 40px 20px 0;
+        opacity: 0.2;
       }
     }
 
