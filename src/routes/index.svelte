@@ -36,14 +36,15 @@
   import Footer from "$lib/components/Footer.svelte";
 
   /* export let coverData; */
+  export let coverData;
   export let sectionsData;
   const routes = [...pages.routes];
 
-  /* const coverImage = {
+  const coverImage = {
     id: coverData.photo[0].id,
     server: coverData.photo[0].server,
     secret: coverData.photo[0].secret,
-  }; */
+  };
 
   routes.forEach((route) => {
     sectionsData.photo.forEach((photo) => {
@@ -69,7 +70,7 @@
 </svelte:head>
 
 <div class="scroll">
-  <!-- <section
+  <section
     id="welcome"
     class="col fcenter fill"
     style="background-image: url({getImage(
@@ -83,15 +84,15 @@
   >
     <img src="/logo-white-full.svg" alt="Laia Martín Photography" />
     <Mouse />
-  </section> -->
-  <section
+  </section>
+  <!-- <section
     id="welcome"
     class="col fcenter fill"
     style="background-image: url('/bg-welcome.jpg')"
   >
     <img src="/logo-white-full.svg" alt="Laia Martín Photography" />
     <Mouse />
-  </section>
+  </section> -->
 
   <section id="sections" class="col xfill">
     <ul class="xfill">
