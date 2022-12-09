@@ -22,6 +22,7 @@
   src={getImage($currentPhoto, "b")}
   alt={$currentPhoto.title}
   transition:fade
+  oncontextmenu="return false"
 />
 
 <!-- <button on:click={nextPhoto}>next</button> -->

@@ -17,6 +17,10 @@
     @import "./src/_reset.scss";
     @import "../node_modules/verdu/verdu.scss";
     @import ".noe-display.css";
+
+    .scroll {
+      scroll-behavior: smooth;
+    }
   }
 
   :root {

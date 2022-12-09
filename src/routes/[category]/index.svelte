@@ -56,6 +56,7 @@
           src={getImage(photo, "w")}
           alt={photo.title}
           on:click={() => openPhoto(i)}
+          oncontextmenu="return false"
         />
       </li>
     {/each}

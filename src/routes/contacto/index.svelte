@@ -10,7 +10,7 @@
 
   <p>
     Email: <a href="mailto:hola@laiamartinphoto.com">
-      hola@laiamartinphoto.comç
+      hola@laiamartinphoto.com
     </a>
     <br />
     Teléfono: <a href="tel:0034661100652">(+34) 661.100.652</a>

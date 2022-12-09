@@ -1,15 +1,45 @@
 <script>
   import { ui } from "$content/nav";
+  import { onMount } from "svelte";
 
   let showMenu = false;
 
   function togMenu() {
     showMenu = !showMenu;
   }
+
+  function closeMenu() {
+    showMenu = false;
+  }
+
+  onMount(() => {
+    const wH = window.innerHeight;
+    const scroll = document.querySelector(".scroll");
+    const verticalLinks = document.querySelectorAll("aside>a");
+    const artisticEl = document.querySelector("#artistic");
+
+    scroll.addEventListener("scroll", (e) => {
+      const { scrollTop } = e.target;
+      console.log(artisticEl.offsetTop - artisticEl.offsetHeight, scrollTop);
+
+      if (
+        scrollTop >= wH / 1.7 &&
+        scrollTop <= artisticEl.offsetTop - artisticEl.offsetHeight
+      ) {
+        verticalLinks.forEach((link) => {
+          link.style.cssText = "color: #000";
+        });
+      } else {
+        verticalLinks.forEach((link) => {
+          link.style.cssText = "color: #fff";
+        });
+      }
+    });
+  });
 </script>
 
 <nav class="row jbetween xfill">
-  <a href="/" class="logo row acenter" on:click={togMenu}>
+  <a href="/" class="logo row acenter" on:click={closeMenu}>
     <img src="/logo.svg" alt="Logotipo" />
   </a>
 
@@ -150,6 +180,7 @@
       font-size: 12px;
       letter-spacing: 2px;
       padding: 20px;
+      transition: 200ms;
       z-index: 98;
     }
 
