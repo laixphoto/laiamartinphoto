@@ -1,6 +1,5 @@
 <script>
   import { ui } from "$content/nav";
-  import { onMount } from "svelte";
 
   let showMenu = false;
 
@@ -11,31 +10,6 @@
   function closeMenu() {
     showMenu = false;
   }
-
-  onMount(() => {
-    const wH = window.innerHeight;
-    const scroll = document.querySelector(".scroll");
-    const verticalLinks = document.querySelectorAll("aside>a");
-    const artisticEl = document.querySelector("#artistic");
-
-    scroll.addEventListener("scroll", (e) => {
-      const { scrollTop } = e.target;
-      console.log(artisticEl.offsetTop - artisticEl.offsetHeight, scrollTop);
-
-      if (
-        scrollTop >= wH / 1.7 &&
-        scrollTop <= artisticEl.offsetTop - artisticEl.offsetHeight
-      ) {
-        verticalLinks.forEach((link) => {
-          link.style.cssText = "color: #000";
-        });
-      } else {
-        verticalLinks.forEach((link) => {
-          link.style.cssText = "color: #fff";
-        });
-      }
-    });
-  });
 </script>
 
 <nav class="row jbetween xfill">
@@ -174,7 +148,7 @@
       position: fixed;
       top: 50%;
       transform: translateY(-50%) rotate(180deg);
-      color: var(--color-pri);
+      color: grey;
       writing-mode: vertical-lr;
       text-transform: uppercase;
       font-size: 12px;

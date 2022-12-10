@@ -40,12 +40,8 @@
   import { ui as pages } from "$content/nav";
   import Mouse from "$lib/icons/Mouse.svelte";
   import Footer from "$lib/components/Footer.svelte";
-  import { fade } from "svelte/transition";
 
-  /* export let coverData; */
-  export let coverData;
-  export let sectionsData;
-  export let artisticData;
+  export let coverData, sectionsData, artisticData;
   const routes = [...pages.routes];
 
   const coverImage = {
@@ -77,11 +73,6 @@
   function toSlug(title) {
     return title.toLowerCase().replaceAll(" ", "-");
   }
-
-  let DOM = false;
-  setTimeout(() => {
-    DOM = true;
-  });
 </script>
 
 <svelte:head>
@@ -90,9 +81,8 @@
 </svelte:head>
 
 <div class="scroll">
-  {#if DOM}
+  {#if routes}
     <section
-      transition:fade
       id="welcome"
       class="col fcenter fill"
       style="background-image: url({getImage(
@@ -110,11 +100,11 @@
       </a>
     </section>
 
-    <section id="sections" class="col xfill" transition:fade>
+    <section id="sections" class="col xfill">
       <ul class="xfill">
         {#each sectionsData.photo as { title, server, id, secret }}
           {#if title !== "Diseño Gráfico"}
-            <li>
+            <li class="xfill">
               <a class="row fill" href={toSlug(title)}>
                 <img
                   class="fill"
@@ -131,7 +121,6 @@
     </section>
 
     <section
-      transition:fade
       id="artistic"
       class="col fcenter xfill"
       style="background-image: url({getImage(
@@ -167,7 +156,7 @@
 
   #sections {
     ul {
-      max-width: 1200px;
+      max-width: 1300px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: repeat(3, 1fr);
@@ -184,26 +173,37 @@
       }
 
       li {
+        cursor: pointer;
         position: relative;
         border-radius: 10px;
+        outline: 2px solid var(--color-pri);
         overflow: hidden;
+        transition: 200ms;
+
+        &:hover {
+          box-shadow: 0 15px 15px -10px rgba(#000, 0.2);
+          transform: scale(1.005);
+        }
 
         &:nth-of-type(5n + 1) {
+          height: 840px;
           grid-row: span 2;
         }
         &:nth-of-type(5n + 2) {
+          height: 400px;
           grid-row: span 1;
         }
         &:nth-of-type(5n + 3) {
+          height: 400px;
           grid-row: span 1;
         }
         &:nth-of-type(5n + 4) {
+          height: 400px;
           grid-row: span 1;
-          aspect-ratio: 12/9;
         }
         &:nth-of-type(5n + 5) {
+          height: 400px;
           grid-row: span 1;
-          aspect-ratio: 12/9;
         }
 
         @media (max-width: 980px) {
@@ -256,7 +256,6 @@
     background-size: cover;
     background-attachment: fixed;
     padding: 15% 40px;
-    color: #fff;
 
     @media (max-width: 980px) {
       padding: 100px 20px;
@@ -270,6 +269,7 @@
     }
 
     h2 {
+      color: #fff;
       font-family: var(--font-title);
       font-size: 60px;
       line-height: 1;

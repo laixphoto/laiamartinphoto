@@ -48,19 +48,29 @@
 </script>
 
 <div class="scroll">
-  <ul class="row jcenter xfill">
-    {#each data.photo as photo, i}
-      <li class="row fcenter">
-        <img
-          class="fill"
-          src={getImage(photo, "w")}
-          alt={photo.title}
-          on:click={() => openPhoto(i)}
-          oncontextmenu="return false"
-        />
-      </li>
-    {/each}
-  </ul>
+  <section
+    id="welcome"
+    class="col fcenter xfill"
+    style="background-image: url({getImage(data.photo[0], 'b')})"
+  >
+    <h1>{data.title}</h1>
+  </section>
+
+  <section id="gallery">
+    <ul class="row jcenter xfill">
+      {#each data.photo as img, i}
+        <li class="xfill">
+          <img
+            class="fill"
+            src={getImage(img, "b")}
+            alt={img.title}
+            on:click={() => openPhoto(i)}
+            oncontextmenu="return false"
+          />
+        </li>
+      {/each}
+    </ul>
+  </section>
 
   {#if $currentPhoto.id}
     <Modal />
@@ -68,38 +78,87 @@
 </div>
 
 <style lang="scss">
-  .scroll {
-    padding: 100px 0;
-  }
+  #welcome {
+    height: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 
-  ul {
-    gap: 10px;
-    padding: 40px;
+    h1 {
+      color: #fff;
+      font-family: var(--font-title);
+      font-size: 100px;
+      line-height: 1;
+      text-align: center;
+      text-shadow: 0 0 15px rgba(#000, 0.2);
+      z-index: 1;
 
-    @media (max-width: 980px) {
-      padding: 20px;
+      @media (max-width: 980px) {
+        font-size: 40px;
+      }
     }
   }
 
-  li {
-    width: 300px;
-    height: 300px;
-    background: $white;
-    border: 1px solid $border;
-    border-radius: 16px;
-    padding: 10px;
+  #gallery {
+    ul {
+      max-width: 1300px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: repeat(3, 1fr);
+      justify-content: stretch;
+      gap: 40px;
+      margin: 0 auto;
+      padding: 100px 40px;
 
-    img {
-      height: 280px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 5px 10px -5px rgba($black, 0.3);
-      transition: 200ms;
-    }
+      @media (max-width: 980px) {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 1fr;
+        gap: 20px;
+        padding: 60px 20px;
+      }
 
-    &:hover {
-      img {
-        filter: opacity(0.5);
+      li {
+        cursor: pointer;
+        border-radius: 10px;
+        outline: 2px solid var(--color-pri);
+        overflow: hidden;
+        transition: 200ms;
+
+        &:hover {
+          box-shadow: 0 15px 15px -10px rgba(#000, 0.2);
+          transform: scale(1.005);
+        }
+
+        &:nth-of-type(5n + 1) {
+          height: 840px;
+          grid-row: span 2;
+        }
+        &:nth-of-type(5n + 2) {
+          height: 400px;
+          grid-row: span 1;
+        }
+        &:nth-of-type(5n + 3) {
+          height: 400px;
+          grid-row: span 1;
+        }
+        &:nth-of-type(5n + 4) {
+          height: 400px;
+          grid-row: span 1;
+        }
+        &:nth-of-type(5n + 5) {
+          height: 400px;
+          grid-row: span 1;
+        }
+
+        @media (max-width: 980px) {
+          grid-row: unset !important;
+          aspect-ratio: 12/9;
+        }
+
+        img {
+          object-fit: cover;
+        }
       }
     }
   }
