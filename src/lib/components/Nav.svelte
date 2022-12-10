@@ -83,11 +83,21 @@
       width: 80px;
       height: 80px;
       background: var(--color-sec);
+      margin-right: 7px;
       z-index: 1;
+
+      &:hover {
+        transform: none;
+      }
+
+      @media (max-width: 980px) {
+        margin-right: 0;
+      }
 
       img {
         width: 30px;
         transform: rotateY(180deg);
+        transform-origin: center;
         transition: 200ms;
       }
 
@@ -120,6 +130,10 @@
 
         &:hover {
           transform: scale(1.1);
+        }
+
+        @media (max-width: 980px) {
+          font-size: 24px;
         }
       }
 

@@ -37,13 +37,14 @@
     return `${prefix}/${server}/${id}_${secret}_${size}.jpg`;
   }
 
-  function openPhoto(i) {
-    let currentIndex = i;
+  function openPhoto(currentIndex) {
+    const lastIndex = data.photo.length - 1;
 
     $currentPhoto = {
+      active: true,
       currentIndex,
-      lenght: data.photo.lenght,
-      ...data.photo[currentIndex],
+      lastIndex,
+      photos: data.photo,
     };
   }
 </script>
@@ -73,7 +74,7 @@
     </ul>
   </section>
 
-  {#if $currentPhoto.id}
+  {#if $currentPhoto.active}
     <Modal />
   {/if}
 
@@ -81,12 +82,21 @@
 </div>
 
 <style lang="scss">
+  section {
+    background-color: #fff;
+  }
+
   #welcome {
     height: 75%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+
+    @media (max-width: 980px) {
+      padding-top: 80px;
+      height: 50%;
+    }
 
     h1 {
       color: #fff;
@@ -156,7 +166,7 @@
 
         @media (max-width: 980px) {
           grid-row: unset !important;
-          aspect-ratio: 12/9;
+          height: 300px !important;
         }
 
         img {

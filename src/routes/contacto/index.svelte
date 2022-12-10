@@ -1,54 +1,70 @@
 <script>
+  import Footer from "$lib/components/Footer.svelte";
+
   function sendForm(e) {
     console.log(e);
     const email = "hola@laiamartinphoto.com";
   }
 </script>
 
-<div class="content col fcenter fill">
-  <h1>Contacto</h1>
+<section id="contact" class="scroll">
+  <article class="col fcenter xfill">
+    <h1>Contacto</h1>
 
-  <p>
-    Email: <a href="mailto:hola@laiamartinphoto.com">
-      hola@laiamartinphoto.com
-    </a>
-    <br />
-    Teléfono: <a href="tel:0034661100652">(+34) 661.100.652</a>
-    <br />
-    <a href="https://api.whatsapp.com/send?phone=0034661100652">Whatsapp</a>
-  </p>
+    <p>
+      Email: <a href="mailto:hola@laiamartinphoto.com">
+        hola@laiamartinphoto.com
+      </a>
+      <br />
+      Teléfono: <a href="tel:0034661100652">(+34) 661.100.652</a>
+      <br />
+      <br />
+      <a
+        class="btn sec semi"
+        href="https://api.whatsapp.com/send?phone=0034661100652">Enviar un Whatsapp</a
+      >
+    </p>
 
-  <!-- <form class="col xfill" on:submit={() => sendForm(e)}>
-      <div class="input-wrapper col xfill">
-        <label for="name">Nombre</label>
-        <input class="xfill" type="text" id="name" name="name" />
-      </div>
+    <!-- <form class="col xfill" on:submit={() => sendForm(e)}>
+        <div class="input-wrapper col xfill">
+          <label for="name">Nombre</label>
+          <input class="xfill" type="text" id="name" name="name" />
+        </div>
+  
+        <div class="input-wrapper col xfill">
+          <label for="email">Email</label>
+          <input class="xfill" type="email" id="email" name="email" />
+        </div>
+  
+        <div class="input-wrapper col xfill">
+          <label for="phone">Teléfono</label>
+          <input class="xfill" type="phone" id="phone" name="phone" />
+        </div>
+  
+        <div class="input-wrapper col xfill">
+          <label for="message">Mensaje</label>
+          <textarea class="xfill" id="message" name="message" />
+        </div>
+  
+        <button class="pri semi" type="submit">Enviar</button>
+      </form> -->
+  </article>
 
-      <div class="input-wrapper col xfill">
-        <label for="email">Email</label>
-        <input class="xfill" type="email" id="email" name="email" />
-      </div>
-
-      <div class="input-wrapper col xfill">
-        <label for="phone">Teléfono</label>
-        <input class="xfill" type="phone" id="phone" name="phone" />
-      </div>
-
-      <div class="input-wrapper col xfill">
-        <label for="message">Mensaje</label>
-        <textarea class="xfill" id="message" name="message" />
-      </div>
-
-      <button class="pri semi" type="submit">Enviar</button>
-    </form> -->
-</div>
+  <Footer />
+</section>
 
 <style lang="scss">
-  .content {
-    padding: 40px;
+  section {
+    background: #fff;
+  }
 
+  article {
+    min-height: calc(100% - 260px);
+    padding: 40px;
+    
     @media (max-width: $mobile) {
-      padding: 20px;
+      min-height: calc(100% - 323px);
+      padding-top: 120px;
     }
   }
 
@@ -59,11 +75,10 @@
 
   p {
     text-align: center;
-    font-size: 20px;
-    line-height: 50px;
+    line-height: 1.8;
   }
 
-  a {
+  a:not(.btn) {
     text-decoration: underline;
     transition: 200ms;
 
@@ -72,7 +87,12 @@
     }
   }
 
-  form {
+  a.btn {
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  /* form {
     max-width: 600px;
     background: $white;
     gap: 20px;
@@ -117,5 +137,5 @@
     width: 200px;
     color: $white;
     margin: 20px auto 0 auto;
-  }
+  } */
 </style>

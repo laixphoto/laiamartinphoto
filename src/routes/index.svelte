@@ -38,6 +38,8 @@
 <script>
   import { ui } from "$content/home";
   import { ui as pages } from "$content/nav";
+  import { fade } from "svelte/transition";
+
   import Mouse from "$lib/icons/Mouse.svelte";
   import Footer from "$lib/components/Footer.svelte";
 
@@ -73,6 +75,11 @@
   function toSlug(title) {
     return title.toLowerCase().replaceAll(" ", "-");
   }
+
+  let ready;
+  setTimeout(() => {
+    ready = true;
+  });
 </script>
 
 <svelte:head>
@@ -81,7 +88,7 @@
 </svelte:head>
 
 <div class="scroll">
-  {#if routes}
+  {#if ready}
     <section
       id="welcome"
       class="col fcenter fill"
@@ -93,6 +100,7 @@
         },
         'b'
       )})"
+      in:fade={{ duration: 2200 }}
     >
       <img src="/logo-white-full.svg" alt="Laia Martín Photography" />
       <a href="#sections">
@@ -142,6 +150,10 @@
 </div>
 
 <style lang="scss">
+  section:not(#welcome) {
+    background-color: #fff;
+  }
+
   #welcome {
     background-repeat: no-repeat;
     background-position: center;
@@ -151,6 +163,10 @@
     img {
       width: 40%;
       min-width: 250px;
+      opacity: 0;
+      animation: fadeIn 1s;
+      animation-fill-mode: forwards;
+      animation-delay: 1s;
     }
   }
 
@@ -208,7 +224,7 @@
 
         @media (max-width: 980px) {
           grid-row: unset !important;
-          aspect-ratio: 12/9;
+          height: 300px !important;
         }
 
         img {
