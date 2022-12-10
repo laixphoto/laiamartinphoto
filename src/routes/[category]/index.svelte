@@ -28,6 +28,7 @@
 <script>
   import { currentPhoto } from "$src/stores";
   import Modal from "$lib/components/Modal.svelte";
+  import Footer from "$lib/components/Footer.svelte";
 
   export let data;
 
@@ -75,6 +76,8 @@
   {#if $currentPhoto.id}
     <Modal />
   {/if}
+
+  <Footer />
 </div>
 
 <style lang="scss">
