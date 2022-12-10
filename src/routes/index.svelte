@@ -159,6 +159,7 @@
   }
 
   #welcome {
+    position: static;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

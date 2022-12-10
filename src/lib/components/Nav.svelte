@@ -1,5 +1,6 @@
 <script>
   import { ui } from "$content/nav";
+  import Menu from "$lib/icons/Menu.svelte";
 
   let showMenu = false;
 
@@ -18,7 +19,7 @@
   </a>
 
   <button class="menu-btn row fcenter" on:click={togMenu}>
-    <img class:close-btn={showMenu} src="/menu.svg" alt="Menú" />
+    <Menu invert={showMenu} />
   </button>
 
   <ul class="col jcenter aend" class:open-menu={showMenu}>
@@ -93,17 +94,6 @@
       @media (max-width: 980px) {
         margin-right: 0;
       }
-
-      img {
-        width: 30px;
-        transform: rotateY(180deg);
-        transform-origin: center;
-        transition: 200ms;
-      }
-
-      .close-btn {
-        transform: rotateY(0deg);
-      }
     }
 
     ul {
@@ -122,7 +112,7 @@
       pointer-events: none;
 
       a {
-        font-size: 32px;
+        font-size: 28px;
         color: var(--color-pri);
         font-weight: bold;
         padding: 0 40px;
@@ -133,7 +123,7 @@
         }
 
         @media (max-width: 980px) {
-          font-size: 24px;
+          font-size: 22px;
         }
       }
 

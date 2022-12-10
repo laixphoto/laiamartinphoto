@@ -87,6 +87,7 @@
   }
 
   #welcome {
+    position: static;
     height: 75%;
     background-repeat: no-repeat;
     background-position: center;
