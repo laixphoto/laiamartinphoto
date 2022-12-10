@@ -1,7 +1,7 @@
-<video src="/loading.mp4" playsinline autoplay loop muted />
+<img src="/loading.gif" alt="Loading" />
 
 <style lang="scss">
-  video {
+  img {
     width: 100px;
   }
 </style>

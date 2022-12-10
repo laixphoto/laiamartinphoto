@@ -102,7 +102,11 @@
       )})"
       in:fade={{ duration: 2200 }}
     >
-      <img src="/logo-white-full.svg" alt="Laia Martín Photography" />
+      <img
+        src="/logo-white-full.svg"
+        alt="Laia Martín Photography"
+        in:fade={{ duration: 1200, delay: 800 }}
+      />
       <a href="#sections">
         <Mouse />
       </a>
@@ -163,10 +167,6 @@
     img {
       width: 40%;
       min-width: 250px;
-      opacity: 0;
-      animation: fadeIn 1s;
-      animation-fill-mode: forwards;
-      animation-delay: 1s;
     }
   }
 

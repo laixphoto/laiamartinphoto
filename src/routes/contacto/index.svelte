@@ -21,7 +21,7 @@
       <br />
       <a
         class="btn sec semi"
-        href="https://api.whatsapp.com/send?phone=0034661100652">Enviar un Whatsapp</a
+        href="https://wa.me/34661100652">Enviar un Whatsapp</a
       >
     </p>
 
