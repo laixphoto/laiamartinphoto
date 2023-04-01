@@ -95,10 +95,10 @@
     background-attachment: fixed;
     
     @media (max-width: 980px) {
+      height: 50%;
       aspect-ratio: 1;
       background-attachment: scroll;
-      padding-top: 80px;
-      height: 50%;
+      margin-top: 80px;
     }
 
     h1 {
