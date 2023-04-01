@@ -21,8 +21,8 @@ export const ui = {
       id: "72157720221375267",
     },
     {
-      slug: "/fotografía-de-producto",
-      title: "Fotografía de producto",
+      slug: "/marca-&-producto",
+      title: "Marca & producto",
       id: "72157720264034570",
     },
     {
