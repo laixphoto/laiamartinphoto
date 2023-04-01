@@ -1,11 +1,12 @@
 <script>
+  import "$fonts/circular.css";
+  import "$fonts/operator.css";
+
   import { navigating } from "$app/stores";
   import { fade } from "svelte/transition";
 
   import Nav from "$lib/components/Nav.svelte";
   import Loading from "$lib/components/Loading.svelte";
-  import "$fonts/circular.css";
-  import "$fonts/operator.css";
 </script>
 
 <main>

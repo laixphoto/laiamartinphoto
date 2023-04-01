@@ -58,7 +58,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99;
+    z-index: 97;
 
     .logo {
       height: 80px;

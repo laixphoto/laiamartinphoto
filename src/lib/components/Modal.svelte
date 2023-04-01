@@ -11,7 +11,7 @@
   }
 
   function closePhoto() {
-    $currentPhoto = { active: false };
+    $currentPhoto = {};
   }
 
   function prevPhoto() {
@@ -72,6 +72,7 @@
     left: 0;
     background: rgba($black, 0.9);
     backdrop-filter: blur(10px);
+    z-index: 98;
   }
 
   .modal {
@@ -80,6 +81,7 @@
     transform: translate(-50%, -50%);
     max-width: 90%;
     max-height: calc(90% - 120px);
+    z-index: 99;
   }
 
   button {
