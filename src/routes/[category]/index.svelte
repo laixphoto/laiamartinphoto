@@ -93,8 +93,10 @@
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-
+    
     @media (max-width: 980px) {
+      aspect-ratio: 1;
+      background-attachment: scroll;
       padding-top: 80px;
       height: 50%;
     }
