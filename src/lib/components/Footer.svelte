@@ -1,13 +1,22 @@
+<script>
+  import Instagram from "$lib/icons/Instagram.svelte";
+</script>
+
 <footer class="row jcenter xfill">
   <article class="row jbetween aend xfill">
     <div class="col">
-      <h3>keep in contact</h3>
+      <h3>Contacta conmigo</h3>
       <p>
         Email - <a href="mailto:hola@laiamartinphoto.com">
           hola@laiamartinphoto.com
         </a>
         <br />
         Tel. - <a href="tel:0034661100652">(+34) 661 100 652</a>
+        <br />
+        <br />
+        <a class="row acenter" href="https://www.instagram.com/rayosdeluces/" target="_blank"
+          >Sígueme en <Instagram /></a
+        >
       </p>
     </div>
 
@@ -34,6 +43,7 @@
       margin-top: 40px;
 
       a {
+        gap: .5em;
         color: #fff;
       }
     }
