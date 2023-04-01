@@ -165,6 +165,10 @@
     background-size: cover;
     background-attachment: fixed;
 
+    @media (max-width: 980px) {
+      background-attachment: scroll;
+    }
+
     img {
       width: 40%;
       min-width: 250px;
@@ -275,6 +279,7 @@
     padding: 15% 40px;
 
     @media (max-width: 980px) {
+      background-attachment: scroll;
       padding: 100px 20px;
     }
 
