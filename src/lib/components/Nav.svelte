@@ -1,15 +1,18 @@
 <script>
   import { ui } from "$content/nav";
   import Menu from "$lib/icons/Menu.svelte";
+  import { currentPhoto } from "$src/stores";
 
   let showMenu = false;
 
   function togMenu() {
     showMenu = !showMenu;
+    $currentPhoto = {};
   }
 
   function closeMenu() {
     showMenu = false;
+    $currentPhoto = {};
   }
 </script>
 
@@ -58,7 +61,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 97;
+    z-index: 99;
 
     .logo {
       height: 80px;

@@ -72,7 +72,7 @@
     left: 0;
     background: rgba($black, 0.9);
     backdrop-filter: blur(10px);
-    z-index: 98;
+    z-index: 97;
   }
 
   .modal {
@@ -81,7 +81,7 @@
     transform: translate(-50%, -50%);
     max-width: 90%;
     max-height: calc(90% - 120px);
-    z-index: 99;
+    z-index: 98;
   }
 
   button {
